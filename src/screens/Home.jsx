@@ -192,17 +192,14 @@ const Home = () => {
   const handleDeleteOrder = async (orderIndex) => {
     const updatedOrders = orders.filter((_, index) => index !== orderIndex);
     setOrders(updatedOrders);
-    await storeData('orders', updatedOrders); // Save updated orders to AsyncStorage
+    await storeData('orders', updatedOrders);
   };
 
   const handleTransferOrder = async (orderIndex) => {
     const orderToTransfer = orders[orderIndex];
     const updatedOrders = orders.filter((_, index) => index !== orderIndex);
     setOrders(updatedOrders);
-    await storeData('orders', updatedOrders); // Save updated orders to AsyncStorage
-
-    // Implement transfer logic here, for example:
-    // sendOrderToKitchen(orderToTransfer);
+    await storeData('orders', updatedOrders);
   };
 
   const showConfirmationModal = (message, action) => {
