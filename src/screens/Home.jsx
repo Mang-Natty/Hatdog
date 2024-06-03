@@ -349,7 +349,7 @@ const Home = () => {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text>Select Quantity:</Text>
+              <Text>Number of Cups:</Text>
               <View style={styles.quantityContainer}>
                 <TouchableOpacity onPress={decrementQuantity} style={styles.quantityButton}>
                   <Text style={styles.buttonText}>-</Text>
@@ -361,10 +361,10 @@ const Home = () => {
               </View>
               <View style={styles.action}>
                 <TouchableOpacity onPress={handleProceed} style={styles.actionButton}>
-                  <Text style={styles.buttonText}>Proceed</Text>
+                  <Text style={styles.actionText}>Proceed</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleCancel} style={styles.actionButton}>
-                  <Text style={styles.buttonText}>Cancel</Text>
+                  <Text style={styles.actionText}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -380,21 +380,24 @@ const Home = () => {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text>Select Flavors for Cup {currentCupIndex + 1}:</Text>
-              {flavors.map((flavor, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={[
-                    styles.flavorButton,
-                    selectedFlavors[currentCupIndex]?.includes(flavor) && styles.selectedFlavorButton,
-                  ]}
-                  onPress={() => handleFlavorSelect(flavor)}
-                >
-                  <Text style={styles.flavorText}>{flavor}</Text>
-                </TouchableOpacity>
-              ))}
+              <Text>Select Flavors</Text>
+              <Text style={styles.selectFlavorText}>Cup {currentCupIndex + 1}:</Text>
+              <View style={styles.flavorContainer}>
+                {flavors.map((flavor, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={[
+                      styles.flavorButton,
+                      selectedFlavors[currentCupIndex]?.includes(flavor) && styles.selectedFlavorButton,
+                    ]}
+                    onPress={() => handleFlavorSelect(flavor)}
+                  >
+                    <Text style={styles.flavorText}>{flavor}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
               <TouchableOpacity onPress={handleFlavorModalClose} style={styles.actionButton}>
-                <Text style={styles.buttonText}>Done</Text>
+                <Text style={styles.actionText}>Done</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -481,7 +484,7 @@ const styles = StyleSheet.create({
   quantityContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 10,
+    marginTop: 10,
   },
   quantityButton: {
     width: 40,
@@ -509,6 +512,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#007BFF",
     borderRadius: 5,
+  },
+  actionText: {
+    fontWeight: "500",
+    color: "#fff",
   },
   section: {
     marginBottom: 20,
@@ -550,9 +557,19 @@ const styles = StyleSheet.create({
     borderColor: "#007BFF",
     borderWidth: 2,
   },
+  selectFlavorText: {
+    fontWeight: "700",
+  },
   orderTextHeader: {
     fontWeight: "700",
     fontSize: 16,
+  },
+  flavorContainer: {
+    display: "flex",
+    justifyContent: "center", 
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 8,
   },
   flavorText: {
     // fontSize: 16,
